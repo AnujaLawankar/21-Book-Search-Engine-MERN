@@ -13,10 +13,11 @@ const app = express();
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers
 
 
-})
+});
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
