@@ -1,4 +1,4 @@
-const { Book, User } = require('../models');
+const { User } = require('../models');
 
 const { signToken } = require('../utils/auth');
 
@@ -27,6 +27,10 @@ const resolvers = {
 
     },
 
+    User: {
+        _id: (parent) => parent._id.toString(), // Convert the ObjectId to a string
+        // Add other field resolvers for User type if needed
+    },
 
     Mutation: {
 
@@ -36,9 +40,11 @@ const resolvers = {
             const user = await User.create(input);
             const token = signToken(user);
 
-            return { token, user };
+            //return { token, user };
 
 
+            //Ensure that the _id field is included in the returned User object
+            return { _id: user._id.toString(), username: user.username, token, user };
 
         },
 
