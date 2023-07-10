@@ -110,13 +110,13 @@ const resolvers = {
             return updatedUser;
         },
     },
-    User: {
-        // Resolver for populating the savedBooks field in the User type
-        async savedBooks(parent) {
-            const user = await parent.populate('savedBooks').execPopulate();
-            return user.savedBooks;
-        },
-    },
+    // User: {
+    //     // Resolver for populating the savedBooks field in the User type
+    //     async savedBooks(parent) {
+    //         const user = await parent.populate('savedBooks').execPopulate();
+    //         return user.savedBooks;
+    //     },
+    // },
 };
 
 module.exports = resolvers;
