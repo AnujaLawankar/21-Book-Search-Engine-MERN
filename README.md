@@ -123,6 +123,8 @@ Book Search Engine is a web application for client to search a book they liked. 
 3. ExpressJS
 4. Web Pack
 5. ReactJS
+6. Document for connection with mongoDB atlas and heroku
+https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-heroku-and-mongodb-atlas
 
 
 
