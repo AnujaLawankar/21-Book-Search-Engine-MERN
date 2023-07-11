@@ -4,19 +4,21 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutation';
+import { LOGIN_USER } from '../utils/mutations';
 
 //import { loginUser } from '../utils/API';
 import Auth from '../utils/auth';
 
+
+
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [validated, setValidated] = useState(false);
+  const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
 
   //add LOGIN_USER mutations
   const [loginUser] = useMutation(LOGIN_USER);
+
 
 
   const handleInputChange = (event) => {
@@ -30,12 +32,27 @@ const LoginForm = () => {
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      // event.preventDefault();
+      event.preventDefault();
       event.stopPropagation();
     }
-    setValidated(true);
 
 
+    try {
+      const response = await loginUser({
+        variables: { ...userFormData }
+      });
+      console.log(response)
+
+      Auth.login(response.data.login.token);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
+
+    setUserFormData({
+      email: '',
+      password: '',
+    });
 
 
     //   try {
@@ -62,29 +79,29 @@ const LoginForm = () => {
 
 
 
-    try {
+    // try {
 
 
-      const { data } = await loginUser({
-        variables: { input: userFormData },
-      });
+    //   const { data } = await loginUser({
+    //     variables: { input: userFormData },
+    //   });
 
 
-      Auth.login(data.loginUser.token);
-    }
+    //   Auth.login(data.loginUser.token);
+    // }
 
-    catch (error) {
-      console.error(error);
-      setShowAlert(true);
+    // catch (error) {
+    //   console.error(error);
+    //   setShowAlert(true);
 
-    }
+    // }
 
-    setUserFormData({
+    // setUserFormData({
 
-      email: ' ',
-      password: ' ',
+    //   email: ' ',
+    //   password: ' ',
 
-    });
+    // });
 
 
 

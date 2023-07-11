@@ -7,30 +7,46 @@ const expiration = '2h';
 
 module.exports = {
   // function for our authenticated routes
-  authMiddleware: function ({ req, res, next }) { // Destructure `req` and `res` from the context object
+  authMiddleware: function ({ req }) { // Destructure `req` and `res` from the context object
     // allows token to be sent via req.query or headers
-    let token = req.headers.authorization || '';
 
-    // Extract the token value from the Authorization header
-    if (token.startsWith('Bearer ')) {
-      token = token.slice(7, token.length);
+    // allows token to be sent via  req.query or headers
+    let token = req.body.token || req.query.token || req.headers.authorization;
+
+    // ["Bearer", "<tokenvalue>"]
+    if (req.headers.authorization) {
+      token = token.split(' ').pop().trim();
     }
-
+    // if no token passed, return the req
     if (!token) {
-      return res.status(400).json({ message: 'You have no token!' });
+      return req;
     }
+
+
+
+
+    // let token = req.headers.authorization || '';
+
+    // // Extract the token value from the Authorization header
+    // if (token.startsWith('Bearer ')) {
+    //   token = token.slice(7, token.length);
+    // }
+
+    // if (!token) {
+    //   return res.status(400).json({ message: 'You have no token!' });
+    // }
 
     // verify token and get user data out of it
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-    } catch (err) { // Catch the error thrown by jwt.verify()
-      console.log('Invalid token:', err.message);
-      return res.status(400).json({ message: 'invalid token!' });
+    } catch {
+
+      console.log('Invalid token');
     }
 
-    // send to next endpoint
-    return next();
+    return req;
+
   },
   signToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };
