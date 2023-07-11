@@ -130,12 +130,24 @@ Book Search Engine is a web application for client to search a book they liked. 
 
 
 The following image demonstrates the web application appearance:
-1. Text Editor(J.A.T.E)'s web appearance
-![Website](./assets/images/screenshot1.png)
+1.  Book Search Engine-MERN database structure.
+![Website](./assets/screenshot1.png)
 
+2. Book Search Engine-MERN web apperance.
+![Website](./assets/screenshot2.png)
 
-13. J.A.T.E on heroku
-![Website](./assets/images/screenshot13.png)
+3. Signup and login page
+![Website](./assets/screenshot3.png)
+
+4.  Search book from user account.
+![Website](./assets/screenshot4.png)
+
+5.  Saved books.
+![Website](./assets/screenshot5.png)
+
+6. Delete the unwanted books.
+![Website](./assets/screenshot6.png)
+
 
 
 ## Testing
