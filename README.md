@@ -82,9 +82,8 @@ THEN the modal closes and he logged in to the site
 
 ## URLs
 Here, you can find the webpage on Heroku.
-
-
- Application's Heroku URL:- 
+Application's Heroku URL:- 
+https://young-caverns-21915-a988ff223cf9.herokuapp.com/
 
 
 
@@ -155,8 +154,6 @@ The following image demonstrates the web application appearance:
 1. For testing this web app hit the following command in your terminal
 
 * npm run develop
-or
-* npm run start
 
 Both commands can use to start a web application.
 
