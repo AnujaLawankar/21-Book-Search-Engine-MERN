@@ -139,10 +139,10 @@ The following image demonstrates the web application appearance:
 3. Signup and login page
 ![Website](./assets/screenshot3.png)
 
-4.  Search book from user account.
+4. Search book from user account.
 ![Website](./assets/screenshot4.png)
 
-5.  Saved books.
+5. Saved books.
 ![Website](./assets/screenshot5.png)
 
 6. Delete the unwanted books.
